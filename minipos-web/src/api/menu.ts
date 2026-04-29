@@ -6,5 +6,5 @@ export type MenuItem = {
 }
 
 export const menuApi = {
-    getByRole: (roleId: number) => http<MenuItem[]>(`/menu/${roleId}`),
+    getByRole: (role: string) => http<MenuItem[]>(`/menu/${role}`),
 }

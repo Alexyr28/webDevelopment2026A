@@ -1,26 +1,33 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-type AuthUser = { token: string; username: string } | null;
+type AuthUser = { token: string; username: string; role: string } | null;
+
 type AuthContextType = {
     user: AuthUser;
-    login: (token: string, username: string) => void;
+    login: (token: string, username: string, role: string) => void;
     logout: () => void;
 };
+
 const AuthContext = createContext<AuthContextType | null>(null);
+
 export function AuthProvider({ children }: { children: ReactNode }) {
     // Persistencia: carga token de localStorage al iniciar
     const [user, setUser] = useState<AuthUser>(() => {
         const token = localStorage.getItem("token");
         const username = localStorage.getItem("username");
-        return token && username ? { token, username } : null;
+        const role = localStorage.getItem("role");
+        return token && username && role ? { token, username, role } : null;
     });
-    function login(token: string, username: string) {
+
+    function login(token: string, username: string, role: string) {
         localStorage.setItem("token", token);
         localStorage.setItem("username", username);
-        setUser({ token, username });
+        localStorage.setItem("role", role);
+        setUser({ token, username, role });
     }
     function logout() {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
+        localStorage.removeItem("role");
         setUser(null);
     }
     return (

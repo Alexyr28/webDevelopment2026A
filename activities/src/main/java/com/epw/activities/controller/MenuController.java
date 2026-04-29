@@ -15,8 +15,8 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @GetMapping("/{id_rol}")
-    public List<MenuItemResponse> getMenu(@PathVariable("id_rol") int roleId){
-        return menuService.getMenuByRole(roleId);
+    @GetMapping("/{roleName}")
+    public List<MenuItemResponse> getMenu(@PathVariable String roleName){
+        return menuService.getMenuByRole(roleName);
     }
 }

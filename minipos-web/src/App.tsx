@@ -9,7 +9,7 @@ import SidebarMenu from "./components/SidebarMenu";
 import { useState } from 'react';
 import TestMenuOptionPage from './pages/TestMenuOptionPage';
 import AboutPage from './pages/AboutPage';
-import { useMenuByRole } from './api/menu.queries';
+import { useMenuByRole } from './hooks/menu.queries';
 import { useAuth } from "./context/AuthContext";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
@@ -18,7 +18,7 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   const { user, logout } = useAuth();
   const [page, setPage] = useState("customers");
-  const { data: menuOptions = [] } = useMenuByRole(1);
+  const { data: menuOptions = [] } = useMenuByRole(user?.role ?? "USER");
 
 
   function renderContent() {

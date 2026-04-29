@@ -40,17 +40,19 @@ public class AuthController {
         user.setUsername(req.getUsername());
         user.setPassword(encoder.encode(req.getPassword())); // BCrypt
         userRepo.save(user);
-        String token = jwtService.generateToken(user.getUsername());
-        return new AuthResponse(token, user.getUsername());
+        String role = user.getRole().name();
+        String token = jwtService.generateToken(user.getUsername(), role);
+        return new AuthResponse(token, user.getUsername(), role);
     }
 
     // POST /api/auth/login
     @PostMapping("/login")
     public AuthResponse login(@Valid @RequestBody LoginRequest req) {
         Authentication auth = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        req.getUsername(), req.getPassword()));
-        String token = jwtService.generateToken(auth.getName());
-        return new AuthResponse(token, auth.getName());
+                new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
+        AppUser user = userRepo.findByUsername(req.getUsername()).orElseThrow();
+        String role = user.getRole().name();
+        String token = jwtService.generateToken(auth.getName(), role);
+        return new AuthResponse(token, auth.getName(), role);
     }
 }

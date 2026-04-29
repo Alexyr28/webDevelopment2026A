@@ -2,6 +2,7 @@ import { http } from "./http";
 export type AuthResponse = {
   token: string;
   username: string;
+  role: string;
 };
 export type LoginDto = {
   username: string;

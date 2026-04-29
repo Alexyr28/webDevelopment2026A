@@ -19,13 +19,19 @@ public class JwtService {
     }
 
     // Genera un token para el usuario
-    public String generateToken(String username) {
+    public String generateToken(String username, String role) {
         return Jwts.builder()
                 .subject(username)
+                .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expirationMs))
                 .signWith(key())
                 .compact();
+    }
+
+    //Extrae Role
+    public String extractRole(String token){
+        return (String) Jwts.parser().verifyWith(key()).build().parseSignedClaims(token).getPayload().get("role");
     }
 
     // Extrae el username del token
