@@ -1,0 +1,50 @@
+.footer {
+    padding: 2rem 1rem;
+    background-color: #1e293b;
+    color: #94a3b8;
+    font-size: 0.875rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social a {
+    color: #94a3b8;
+    transition: color 0.2s;
+}
+
+.social a:hover {
+    color: #ffffff;
+}
+
+.copy {
+    text-align: center;
+    margin: 0;
+}
+
+.logo {
+    text-align: right;
+}
+
+.logo span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+}
