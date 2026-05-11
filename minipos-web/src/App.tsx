@@ -2,6 +2,7 @@ import './App.css'
 /* Contenido de la aplicación */
 import CustomersPage from "./pages/CustomersPage";
 import DepartamentsPage from "./pages/DepartamentPage";
+import DashboardPage from "./pages/DashboardPage";
 /* Organizador de la aplicación */
 import MainLayout from "./layouts/MainLayout";
 /* Contenedor del menu lateral */
@@ -23,6 +24,8 @@ function App() {
 
   function renderContent() {
     switch (page) {
+      case "dashboard":
+        return <DashboardPage />;
       case "customers":
         return <CustomersPage />;
       case "departments":
@@ -32,7 +35,7 @@ function App() {
       case "about":
         return <AboutPage />;
       default:
-        return <CustomersPage />;
+        return <DashboardPage />;
     }
   }
   const sidebar = (

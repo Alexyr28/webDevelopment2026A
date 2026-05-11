@@ -17,12 +17,15 @@ public class DataInitializer {
         return args -> {
             if (repo.count() > 0) return;
             repo.saveAll(List.of(
-                item("customers",       "Customers",        Role.ADMIN, 1),
-                item("departments",     "Departments",      Role.ADMIN, 2),
-                item("test-menu-option","Test Menu Option", Role.ADMIN, 3),
-                item("about",           "About",            Role.ADMIN, 4),
-                item("departments",     "Departments",      Role.USER,  1),
-                item("about",           "About",            Role.USER,  2)
+                item("dashboard",       "Dashboard",        Role.ADMIN,  1),
+                item("customers",       "Customers",        Role.ADMIN, 2),
+                item("departments",     "Departments",      Role.ADMIN, 3),
+                item("test-menu-option","Test Menu Option", Role.ADMIN, 4),
+                item("about",           "About",            Role.ADMIN, 5),
+                item("dashboard",       "Dashboard",        Role.USER,  1),
+                item("customers",       "Customers",        Role.USER,  2),
+                item("departments",     "Departments",      Role.USER,  3),
+                item("about",           "About",            Role.USER,  4)
             ));
         };
     }
